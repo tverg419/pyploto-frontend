@@ -6,12 +6,13 @@ import { Route, Switch } from 'react-router-dom'
 import Nav      from './components/Nav.jsx'
 import Feed     from './components/Feed.jsx'
 import Search   from './components/Search.jsx'
-import Profile  from './components/.jsx'
+import Profile  from './components/Profile.jsx'
 import Login    from './components/Login.jsx'
 import Signup   from './components/Signup.jsx'
 import SuccessPost    from './components/SuccessPost.jsx'
 import DetailPost     from './components/DetailPost.jsx'
 import CreatePost     from './components/CreatePost.jsx'
+import EditPost       from './components/EditPost.jsx'
 import axiosInstance  from './axios.js';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
 
       <div className="App-main">
         <Switch>
-          <Route exact path="/feed" component={Feed}/>
+          <Route exact path="/" component={Feed}/>
           <Route exact path='/profile' component={Profile}/>
           <Route exact path='/search' component={Search}/>
           <Route exact path='/' component={Signup}/>
@@ -49,7 +50,8 @@ function App() {
           <Route exact path="/posts/create" component={CreatePost}/>
           <Route exact path="/posts/success" component={SuccessPost}/>
           <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
-          <Route path='/' render={() => {<Signup/>}}/>
+          <Route exact path="/posts/:id/edit" render={(routerProps) => <EditPost id={routerProps.match.params.id}/> }/>
+          <Route path='/signup' render={() => {<Signup/>}}/>
         </Switch>
       </div>
 
