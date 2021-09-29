@@ -17,14 +17,11 @@ function Feed(props) {
         // Reverse your map 
         const feed = posts.map(post => {
             return (
-
                 <div key={post.id} className='post-card'>
                     <img src={post.media} alt='post'/>
                     <div className='post-details'>
-                        <p>{post.likes}</p>
-                        <p>{post.caption}</p>
                     </div>
-                    <a href='/post/${post.id}'>See Post Details</a>
+                    <a href={`/posts/${post.post_id}`}>See Post Details</a>
                 </div>
 
             )

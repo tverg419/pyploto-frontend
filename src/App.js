@@ -9,9 +9,10 @@ import Search   from './components/Search.jsx'
 import Profile  from './components/.jsx'
 import Login    from './components/Login.jsx'
 import Signup   from './components/Signup.jsx'
-import DetailPost from './components/DetailPost.jsx'
-import CreatePost from './components/CreatePost.jsx'
-import axiosInstance from './axios.js';
+import SuccessPost    from './components/SuccessPost.jsx'
+import DetailPost     from './components/DetailPost.jsx'
+import CreatePost     from './components/CreatePost.jsx'
+import axiosInstance  from './axios.js';
 
 function App() {
 
@@ -46,7 +47,8 @@ function App() {
           <Route exact path='/' component={Signup}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/posts/create" component={CreatePost}/>
-          <Route exact path="/posts/:int" component={DetailPost}/>
+          <Route exact path="/posts/success" component={SuccessPost}/>
+          <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
           <Route path='/' render={() => {<Signup/>}}/>
         </Switch>
       </div>
