@@ -12,22 +12,26 @@ function Feed(props) {
         .catch(err => console.error)
     }
     useEffect(() => getPosts(), [])
-    if (posts) {
 
+    if (posts) {
+        // Reverse your map 
         const feed = posts.map(post => {
             return (
+
                 <div key={post.id} className='post-card'>
-                    <img src='https://i.ebayimg.com/images/g/~NcAAOSwTC1eQoGe/s-l640.jpg' alt='post'/>
+                    <img src={post.media} alt='post'/>
                     <div className='post-details'>
                         <p>{post.likes}</p>
                         <p>{post.caption}</p>
                     </div>
+                    <a href='/post/${post.id}'>See Post Details</a>
                 </div>
 
             )
         })
         return (
             <div>
+                <a href='/posts/create'>Create Post</a>
                 {feed}
             </div>
         )

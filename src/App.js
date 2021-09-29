@@ -6,9 +6,11 @@ import { Route, Switch } from 'react-router-dom'
 import Nav      from './components/Nav.jsx'
 import Feed     from './components/Feed.jsx'
 import Search   from './components/Search.jsx'
-import Profile  from './components/Profile.jsx'
+import Profile  from './components/.jsx'
 import Login    from './components/Login.jsx'
 import Signup   from './components/Signup.jsx'
+import DetailPost from './components/DetailPost.jsx'
+import CreatePost from './components/CreatePost.jsx'
 import axiosInstance from './axios.js';
 
 function App() {
@@ -33,7 +35,7 @@ function App() {
       {/* <LoginContext.Provider value={loginStatus}> */}
       
       <div className="App-header">
-          <Nav/>          
+          <Nav handleLogout={handleLogout}/>          
       </div>
 
       <div className="App-main">
@@ -43,13 +45,15 @@ function App() {
           <Route exact path='/search' component={Search}/>
           <Route exact path='/' component={Signup}/>
           <Route exact path="/login" component={Login}/>
+          <Route exact path="/posts/create" component={CreatePost}/>
+          <Route exact path="/posts/:int" component={DetailPost}/>
           <Route path='/' render={() => {<Signup/>}}/>
         </Switch>
       </div>
 
-      <div className="App-footer">
+      {/* <div className="App-footer">
         <h1>Footer</h1>
-      </div>
+      </div> */}
 {/* 
       </LoginContext.Provider> */}
     </div>
