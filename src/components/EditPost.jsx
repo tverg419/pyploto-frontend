@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import axiosInstance from '../axios.js'
+import {Form, Button} from 'react-bootstrap'
 
 function EditPost(props) {
 
@@ -36,15 +37,15 @@ function EditPost(props) {
     }
     return (
         <div>
-            <h1>Editing Post: {form.title}</h1>
-            <form onSubmit={submitEdit}>
+            <h1>Editing Post</h1>
+            <Form onSubmit={submitEdit}>
 
-                <input id='title' type='text' value={form.title} onChange={updateForm}></input>
-                <input id='media' type='text' value={form.media} onChange={updateForm}></input>
-                <textarea id='caption' value={form.caption} onChange={updateForm}></textarea>
+                <Form.Control id='title' type='text' value={form.title} onChange={updateForm}></Form.Control>
+                <Form.Control id='media' type='text' value={form.media} onChange={updateForm}></Form.Control>
+                <Form.Control id='caption' value={form.caption} onChange={updateForm}></Form.Control>
 
-                <button type='submit'>Finish Editing</button>
-            </form>
+                <Button type='submit'>Finish Editing</Button>
+            </Form>
         </div>
     );
 }

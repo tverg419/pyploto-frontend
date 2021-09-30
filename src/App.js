@@ -26,6 +26,7 @@ function App() {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     localStorage.removeItem('username')
+    localStorage.removeItem('user_id')
     axiosInstance.defaults.headers['Authorization'] = null;
     setLoginStatus(false)
     return response
@@ -45,13 +46,13 @@ function App() {
           <Route exact path="/" component={Feed}/>
           <Route exact path='/profile' component={Profile}/>
           <Route exact path='/search' component={Search}/>
-          <Route exact path='/' component={Signup}/>
+          <Route exact path='/signup' component={Signup}/>
           <Route exact path="/login" component={Login}/>
           <Route exact path="/posts/create" component={CreatePost}/>
           <Route exact path="/posts/success" component={SuccessPost}/>
           <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
           <Route exact path="/posts/:id/edit" render={(routerProps) => <EditPost id={routerProps.match.params.id}/> }/>
-          <Route path='/signup' render={() => {<Signup/>}}/>
+          <Route path='/' render={() => {<Signup/>}}/>
         </Switch>
       </div>
 

@@ -4,30 +4,47 @@
     padding: 0;
 }
 .App {
-    background-color: aquamarine;
     max-width: 65vw;
-    margin: 0px auto;
+    height: auto;
+    background-color: white;
+    border: 1px solid black;
+    padding: 0px 25px;
+    margin: 10px auto;
 }
 .App-main {
     margin: 0px auto;
     text-align: center;
+    padding-bottom: 50px;
+}
+.App-footer {
+    position: absolute;
 }
 .nav {
+    width: 100%;
+    height: 20vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     list-style: none;
+    text-align: center;
+}
+.nav-left, .nav-right, .nav-center{
+    align-self: center;
+    flex: 1;
 }
 .nav a {
-    text-decoration: none;
-    padding: 0px 20px;
-    margin: 0px 5px;
-    background-color: black;
-    color: white;
-    font-size: 1em;
+    border: solid 2px black;
 }
-.post-card {
-
+.grid-container { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    border: 5px solid black;
+}
+.grid-square {
+    background-color: black;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
 }
 .post-details {
     text-align: left;
@@ -36,12 +53,13 @@
     background-color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     max-width: 350px;
     justify-content: center;
     align-items: center;
-    padding-bottom: 50px;
+    padding: 30px 0px;
+    margin: 0 auto;
 }
 .signup-form {
     max-width: 400px;
+    border: 2px solid black;
 }

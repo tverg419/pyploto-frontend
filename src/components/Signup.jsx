@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axiosInstance from '../axios.js'
-
+import { Form, Button } from 'react-bootstrap'
 function Signup(props) {
 
     const initialState = {
@@ -50,14 +50,22 @@ function Signup(props) {
     return (
         <div className='form signup-form'>
             <h1>Sign-Up</h1>
-            <form onSubmit={handleSubmit}>
-                <input type='email' name='email' placeholder='Email' value={form.email} onChange={handleChange}></input>
-                <input type='text' name='first_name' placeholder='First Name'value={form.first_name} onChange={handleChange}></input>
-                <input type='text' name='last_name' placeholder='Last Name' value={form.last_name} onChange={handleChange}></input>
-                <input type='text' name='username' placeholder='Username' value={form.username} onChange={handleChange}></input>
-                <input type='password' name='password' placeholder='Password' value={form.password}onChange={handleChange}></input>
-                <button type='submit'>Submit</button>                
-            </form>
+            <Form onSubmit={handleSubmit} className='d-grid'>
+                <div className='d-grid'> 
+                <Form.Group className='d-grid gap-2'>
+                    <Form.Control type='email' name='email'      placeholder='Email'      value={form.email}      onChange={handleChange}></Form.Control> 
+                    <Form.Control type='text'  name='first_name' placeholder='First Name' value={form.first_name} onChange={handleChange}></Form.Control>
+                    <Form.Control type='text'  name='last_name'  placeholder='Last Name'  value={form.last_name}  onChange={handleChange}></Form.Control>
+                    <Form.Control type='text'  name='username'   placeholder='Username'   value={form.username}   onChange={handleChange}></Form.Control>
+                    <Form.Control type='text'  name='password'   placeholder='Password'   value={form.password}   onChange={handleChange}></Form.Control>
+                    <Button type='submit'>Sign-Up</Button>                
+                </Form.Group>
+                <Form.Group>
+                <p>Have an account?</p><Button variant='link'>Log In</Button>
+                    </Form.Group>
+                </div>
+
+            </Form>
         </div>
     );
 }

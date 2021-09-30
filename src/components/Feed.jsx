@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axios.js'
-
+import { Button } from 'react-bootstrap'
 function Feed(props) {
 
     const [posts, setPosts] = useState([])
@@ -21,14 +21,14 @@ function Feed(props) {
                     <img src={post.media} alt='post'/>
                     <div className='post-details'>
                     </div>
-                    <a href={`/posts/${post.post_id}`}>See Post Details</a>
+                    <Button href={`/posts/${post.post_id}`} variant='secondary'>See Post Details</Button>
                 </div>
 
             )
         })
         return (
             <div>
-                <a href='/posts/create'>Create Post</a>
+                <Button href='/posts/create'>Create Post</Button>
                 {feed}
             </div>
         )

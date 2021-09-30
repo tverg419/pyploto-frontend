@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosInstance from '../axios.js'
+import { Form, Button } from 'react-bootstrap'
+
 function DetailPost(props) {
 
     const [post, setPost] = useState()
@@ -51,7 +53,7 @@ function DetailPost(props) {
                 return (
                     <div key={comment.id}>
                         <p>{comment.author_id}: {comment.body}</p>
-                        <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                        <Button variant='danger' onClick={() => deleteComment(comment.id)}>Delete</Button>
                     </div>
                 )
             })
@@ -59,7 +61,7 @@ function DetailPost(props) {
                 
                 <div>
                     <div className='post-detail-card'>
-                        <a href={`/posts/${post.post_id}/edit/`}>Edit Post</a>
+                        <Button href={`/posts/${post.post_id}/edit/`}>Edit Post</Button>
                         <h1>{post.title}</h1>
                         <img src={post.media} alt='post'/>
                         <p>{post.title}</p>
@@ -67,12 +69,12 @@ function DetailPost(props) {
                     </div>
                     <div className='comments'>
                         {commentsList}
-                        <form onSubmit={createComment}>
-                            <input id='body' type='text' value={commentForm.body} onChange={changeComment}></input>
-                            <button type='submit'>Send Comment</button>
-                        </form>
+                        <Form onSubmit={createComment}>
+                            <Form.Control id='body' type='text' placeholder='Enter Comment' value={commentForm.body} onChange={changeComment}></Form.Control>
+                            <Button type='submit'>Send Comment</Button>
+                        </Form>
                     </div>
-                    <button onClick={deletePost}>Delete Post</button>
+                    <Button variant='danger' onClick={deletePost}>Delete Post</Button>
              </div>
             );
     } else {

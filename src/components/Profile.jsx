@@ -18,7 +18,7 @@ function Profile(props) {
         console.log(filteredPosts)
         const profile = filteredPosts.map(post => {
             return (
-                <div>
+                <div className='grid-square'>
                     <div key={post.id} className='post-card'>
                         <div>Grid</div>
                     </div>
@@ -27,7 +27,7 @@ function Profile(props) {
             )
         })
         return (
-            <div>
+            <div className='grid-container'>
                 {profile}
             </div>
         )

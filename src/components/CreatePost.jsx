@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import axiosInstance from '../axios.js'
+import { Button } from 'react-bootstrap'
 
 function CreatePost(props) {
     const user = localStorage.getItem('username')
@@ -42,7 +43,7 @@ function CreatePost(props) {
                 <input id='title' type='text' placeholder='title' onChange={handleChange} value={form.title}></input>
                 <input id='media' type='text' placeholder='Image Url' onChange={handleChange} value={form.media}></input>
                 <textarea id='caption'placeholder='Caption' onChange={handleChange} value={form.caption}></textarea>
-                <button type='submit'>Create</button>
+                <Button type='submit' variant='secondary'>Create</Button>
             </form>
         </div>
     );

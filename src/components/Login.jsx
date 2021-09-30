@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axiosInstance from '../axios.js'
-
+import { Form, Button } from 'react-bootstrap'
 function Login(props) {
     const initialState = {
         'username': '',
@@ -35,11 +35,11 @@ function Login(props) {
     return (
         <div className='form login-form'>
             <h1> Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange}></input>
-                <input type='password' name='password' placeholder='Password' value={login.password}onChange={handleChange}></input>
-                <button type='submit'>Submit</button>      
-            </form>
+            <Form onSubmit={handleSubmit}>
+                <Form.Control type='text' name='username' placeholder='Username' value={login.username} onChange={handleChange}></Form.Control>
+                <Form.Control type='password' name='password' placeholder='Password' value={login.password}onChange={handleChange}></Form.Control>
+                <Button type='submit'>Submit</Button>      
+            </Form>
         </div>
     );
 }

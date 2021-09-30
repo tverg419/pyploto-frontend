@@ -1,12 +1,13 @@
 import React from 'react';
+import { Form, Button } from 'react-bootstrap'
 
 function Search(props) {
     return (
         <div>
-            <h1>Welcome to the Search Page</h1>
-            <form>
-                <input type='text' placeholder='Search for posts..'></input>
-            </form>
+            <h1>Search Posts</h1>
+            <Form>
+                <Form.Control type='text' placeholder='Search for posts..'></Form.Control>
+            </Form>
 
         </div>
     );
