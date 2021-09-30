@@ -3,30 +3,85 @@ import { useHistory } from 'react-router-dom';
 import axiosInstance from '../axios.js'
 function DetailPost(props) {
 
-    const [post, setPost] = useState({})
+    const [post, setPost] = useState()
+    const [comments, setComments] = useState()
+    const [commentForm, setCommentForm] = useState({
+        post_id: props.id,
+        author_id: 1,
+        body: ''
+    })
     const history = useHistory()
+
     async function getPost() {
         await axiosInstance.get(`/posts/${props.id}`)
         .then(res => setPost(res.data))
     }
-    useEffect(() => getPost(), [])
-
+    
     const deletePost = () => {
         axiosInstance.delete(`/posts/${props.id}`)
         history.push('/')
     }
-    return (
-        <div>
-            <div className='post-detail-card'>
-            <a href={`/posts/${post.post_id}/edit/`}>Edit Post</a>
-            <h1>{post.title}</h1>
-            <img src={post.media} alt='post'/>
-            <p>{post.title}</p>
-            <p>{post.caption}</p>
+
+
+    async function getComments() {
+        await axiosInstance.get(`/comments/?post_id=${props.id}`)
+        .then(res => setComments(res.data))
+    }
+
+    function changeComment(event) {
+        setCommentForm({...commentForm, [event.target.id]: event.target.value})
+    }
+    function createComment(event) {
+        event.preventDefault()
+        axiosInstance.post(`/comments/?post_id=${props.id}`, commentForm)
+        .then(res => console.log(res.data))
+        window.location.reload()
+    }
+    function deleteComment(id) {
+        axiosInstance.delete(`/comments/${id}`)
+        window.location.reload()
+    }
+    useEffect(() => {
+        getPost()
+        getComments()
+    }, [])
+    if (post && comments) {
+
+            const commentsList = comments.map(comment => {
+                return (
+                    <div key={comment.id}>
+                        <p>{comment.author_id}: {comment.body}</p>
+                        <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                    </div>
+                )
+            })
+            return (
+                
+                <div>
+                    <div className='post-detail-card'>
+                        <a href={`/posts/${post.post_id}/edit/`}>Edit Post</a>
+                        <h1>{post.title}</h1>
+                        <img src={post.media} alt='post'/>
+                        <p>{post.title}</p>
+                        <p>{post.caption}</p>
+                    </div>
+                    <div className='comments'>
+                        {commentsList}
+                        <form onSubmit={createComment}>
+                            <input id='body' type='text' value={commentForm.body} onChange={changeComment}></input>
+                            <button type='submit'>Send Comment</button>
+                        </form>
+                    </div>
+                    <button onClick={deletePost}>Delete Post</button>
+             </div>
+            );
+    } else {
+        return (
+            <div>
+                <h1>Loading...</h1>
             </div>
-            <button onClick={deletePost}>Delete</button>
-        </div>
-    );
+        )
+    }
 }
 
 export default DetailPost;

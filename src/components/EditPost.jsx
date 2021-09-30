@@ -18,8 +18,8 @@ function EditPost(props) {
                 ['media']: data.media, 
                 ['caption']: data.caption
             })
-            })
-        }
+        })
+    }
     useEffect(() => getPost(), [])
 
     const updateForm = (event) => {
