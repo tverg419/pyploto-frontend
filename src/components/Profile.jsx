@@ -14,21 +14,31 @@ function Profile(props) {
     useEffect(() => getPosts(), [])
 
     if (posts) {
-        const filteredPosts = posts.filter(post => post.author === 1)
+        const filteredPosts = posts.filter(post => post.author === 2)
         console.log(filteredPosts)
         const profile = filteredPosts.map(post => {
             return (
                 <div className='grid-square'>
-                    <div key={post.id} className='post-card'>
-                        <div>Grid</div>
+                    <div key={post.id} className='profile-post'>
+                        <img src={post.media} alt='grid'></img>
                     </div>
                 </div>
 
             )
         })
         return (
-            <div className='grid-container'>
-                {profile}
+            <div className='profile'>
+                <div className='profile-card'>
+                    <div>
+                        <img className='profile-picture' alt='profile-pic'></img>
+                    </div>
+                    <div className='profile-details'>
+                        <p>Full Namesdfjhsfkjhskfhsfksahfaksfhkfh</p>
+                    </div>
+                </div>
+                <div className='grid-container'>
+                    {profile}
+                </div>
             </div>
         )
 

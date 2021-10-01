@@ -18,17 +18,18 @@ function Feed(props) {
         const feed = posts.map(post => {
             return (
                 <div key={post.id} className='post-card'>
-                    <img src={post.media} alt='post'/>
-                    <div className='post-details'>
+                    <div className='post-header'>
+                    <h2>{post.author}</h2>
                     </div>
+                    <img src={post.media} alt='post'/>
                     <Button href={`/posts/${post.post_id}`} variant='secondary'>See Post Details</Button>
                 </div>
 
             )
         })
         return (
-            <div>
-                <Button href='/posts/create'>Create Post</Button>
+            <div className='feed-container'>
+                <Button className='create-button' href='/posts/create'>Create Post</Button>
                 {feed}
             </div>
         )
