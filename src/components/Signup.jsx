@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axiosInstance from '../axios.js'
 import { Form, Button } from 'react-bootstrap'
+import {LoginContext} from './LoginContext'
+
 function Signup(props) {
 
     const initialState = {
@@ -10,13 +12,15 @@ function Signup(props) {
         username: '',
         password: '',
     }
-
     const [form, setForm] = useState(initialState)
+    const {loginStatus, setLoginStatus} = useContext(LoginContext)
 
+    // sets form when inputs are changed
     const handleChange = (event) => {
         setForm({...form, [event.target.name]: event.target.value})
     }
     
+    // submits form to create a new user
     async function handleSubmit(event) {
         event.preventDefault()
         await axiosInstance.post('/users/create/',
@@ -27,6 +31,7 @@ function Signup(props) {
             username: form.username,
             password: form.password,
         })
+        // logs the newly made user in 
         .then(() => {
             axiosInstance.post('token/obtain/', {
                 username: form.username,
@@ -38,13 +43,12 @@ function Signup(props) {
                 localStorage.setItem('refresh_token', res.data.refresh)
                 localStorage.setItem('username', form.username)
                 localStorage.setItem('user_id', 1)
-
                 return res
             })
         })
-
         .catch(error => console.error)
-        setForm(initialState)
+        // sets login to true
+        setLoginStatus(true)
     }
 
     return (
@@ -60,9 +64,10 @@ function Signup(props) {
                     <Form.Control type='text'  name='password'   placeholder='Password'   value={form.password}   onChange={handleChange}></Form.Control>
                     <Button type='submit'>Sign-Up</Button>                
                 </Form.Group>
-                <Form.Group>
-                <p>Have an account?</p><Button variant='link'>Log In</Button>
-                    </Form.Group>
+                </div>
+            <div className="input-group">
+                <p>Have an account already?</p>
+                <Button href='login/'type="button" variant='link'>Log-In</Button>
                 </div>
 
             </Form>

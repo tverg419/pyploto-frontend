@@ -1,39 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
-// import LoginContext from './LoginContext.jsx'
+import { CgProfile } from 'react-icons/cg'
+import { IoHome, IoLogOutOutline } from 'react-icons/io5'
+import { GoSearch } from 'react-icons/go'
+import { LoginContext } from './LoginContext.jsx'
+import axiosInstance from '../axios.js';
 
-function Nav({ handleLogout }) {
+function Nav(props) {
 
-    // let loginStatus = React.useContext(LoginContext)
-    const loginStatus = true
+    const {loginStatus, setLoginStatus} = useContext(LoginContext)
+    const history = useHistory()
+
+
+    async function handleLogout() {
+        const response = await axiosInstance.post('/blacklist/', {
+          'refresh_token': localStorage.getItem('refresh_token')
+        })
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('user_id')
+        axiosInstance.defaults.headers['Authorization'] = null;
+        setLoginStatus(false)
+        history.push('/login')
+        return response
+      }
+    
+      
+    // ternary operator to switch nav bar
     if (loginStatus) {
         return (
             <div className="nav">
-                <div className='nav-left'>
-                    <Button href='/'       variant='light'>Feed</Button>
-                    <Button href='/search' variant='light'>Search</Button>
-                </div>            
-                <div className='nav-center'>
-                    <h1>Pyploto</h1>
-                </div>            
-                <div className='nav-right'>
-                    <Button href='/profile' variant='light'>Profile</Button>
-                    {/* <Button href='/Login' variant='light'>Login</Button> */}
-                    <Button variant='dark'onClick={handleLogout}>Logout</Button>
-                </div>
-                
+                <a href='/'       ><IoHome/></a>
+                <a href='/search' ><GoSearch/></a>
+                <a href='/profile'><CgProfile/></a>
+                <button onClick={handleLogout}><IoLogOutOutline/></button>
             </div>
-    );
+        );
     } else {
         return (
             <div className="nav">
-                <div className='nav-left'>
-                </div>            
-                <div className='nav-center'>
-                    <h1>Pyploto</h1>
-                </div>            
-                <div className='nav-right'>
-                    {/* <button onClick={handleLogout}>Logout</button> */}
+                <div>
+                    <Button href='/login'  variant='light'>Log In</Button>
+                    <Button href='/signup' variant='light'>Sign Up</Button>
                 </div>
                 
             </div>

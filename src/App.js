@@ -1,8 +1,8 @@
 import './App.css';
 import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
-// import { LoginContext } from './components/LoginContext.jsx';
 
+import { LoginContext } from './components/LoginContext.jsx'
 import Nav      from './components/Nav.jsx'
 import Feed     from './components/Feed.jsx'
 import Search   from './components/Search.jsx'
@@ -13,54 +13,40 @@ import SuccessPost    from './components/SuccessPost.jsx'
 import DetailPost     from './components/DetailPost.jsx'
 import CreatePost     from './components/CreatePost.jsx'
 import EditPost       from './components/EditPost.jsx'
-import axiosInstance  from './axios.js';
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState(false)
-  
-  async function handleLogout() {
-    const response = await axiosInstance.post('/blacklist/', {
-      'refresh_token': localStorage.getItem('refresh_token')
-    })
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('user_id')
-    axiosInstance.defaults.headers['Authorization'] = null;
-    setLoginStatus(false)
-    return response
-  }
+  const [loginStatus, setLoginStatus] = useState(null)
 
   return (
     
     <div className="App">
-      {/* <LoginContext.Provider value={loginStatus}> */}
+        <LoginContext.Provider value={{loginStatus, setLoginStatus}}>
+
       
       <div className="App-header">
-          <Nav handleLogout={handleLogout}/>          
+          <Nav/>          
       </div>
 
       <div className="App-main">
-        <Switch>
-          <Route exact path="/" component={Feed}/>
-          <Route exact path='/profile' component={Profile}/>
-          <Route exact path='/search' component={Search}/>
-          <Route exact path='/signup' component={Signup}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/posts/create" component={CreatePost}/>
-          <Route exact path="/posts/success" component={SuccessPost}/>
-          <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
-          <Route exact path="/posts/:id/edit" render={(routerProps) => <EditPost id={routerProps.match.params.id}/> }/>
-          <Route path='/' render={() => {<Signup/>}}/>
-        </Switch>
+          <Switch>
+            <Route exact path="/" component={Feed}/>
+            <Route exact path='/profile' component={Profile}/>
+            <Route exact path='/search' component={Search}/>
+            <Route exact path='/signup' component={Signup}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/posts/create" component={CreatePost}/>
+            <Route exact path="/posts/success" component={SuccessPost}/>
+            <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
+            <Route exact path="/posts/:id/edit" render={(routerProps) => <EditPost id={routerProps.match.params.id}/> }/>
+            <Route path='/' render={() => {<Signup/>}}/>
+          </Switch>
       </div>
 
       {/* <div className="App-footer">
         <h1>Footer</h1>
       </div> */}
-{/* 
-      </LoginContext.Provider> */}
+      </LoginContext.Provider>
     </div>
   );
 }
