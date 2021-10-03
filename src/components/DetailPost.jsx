@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosInstance from '../axios.js'
 import { Form, Button } from 'react-bootstrap'
+import { Image } from 'cloudinary-react'
 
 function DetailPost(props) {
 
@@ -47,6 +48,7 @@ function DetailPost(props) {
         getPost()
         getComments()
     }, [])
+    console.log(post)
     if (post && comments) {
 
             const commentsList = comments.map(comment => {
@@ -63,7 +65,7 @@ function DetailPost(props) {
                     <div className='post-detail-card'>
                         <Button href={`/posts/${post.post_id}/edit/`}>Edit Post</Button>
                         <h1>{post.title}</h1>
-                        <img src={post.media} alt='post'/>
+                        <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
                         <p>{post.title}</p>
                         <p>{post.caption}</p>
                     </div>

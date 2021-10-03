@@ -41,7 +41,7 @@ function CreatePost(props) {
             <h2>Create Post for {user}</h2>
             <form className='form create-post-form' onSubmit={handleCreate}>
                 <input id='title' type='text' placeholder='title' onChange={handleChange} value={form.title}></input>
-                <input id='media' type='text' placeholder='Image Url' onChange={handleChange} value={form.media}></input>
+                <input id='media' type='file' placeholder='Image Url' onChange={handleChange} value={form.media}></input>
                 <textarea id='caption'placeholder='Caption' onChange={handleChange} value={form.caption}></textarea>
                 <Button type='submit' variant='secondary'>Create</Button>
             </form>

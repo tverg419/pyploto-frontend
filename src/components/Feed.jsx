@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axios.js'
 import { Button } from 'react-bootstrap'
+import { Image } from 'cloudinary-react'
+
 function Feed(props) {
 
     const [posts, setPosts] = useState([])
@@ -21,7 +23,7 @@ function Feed(props) {
                     <div className='post-header'>
                     <h2>{post.author}</h2>
                     </div>
-                    <img src={post.media} alt='post'/>
+                    <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
                     <Button href={`/posts/${post.post_id}`} variant='secondary'>See Post Details</Button>
                 </div>
 
