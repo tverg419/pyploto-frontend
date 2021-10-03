@@ -25,14 +25,17 @@ function Signup(props) {
         event.preventDefault()
         await axiosInstance.post('/users/create/',
         {
-            email: form.email,
+            email:      form.email,
             first_name: form.first_name,
-            last_name: form.last_name,
-            username: form.username,
-            password: form.password,
+            last_name:  form.last_name,
+            username:   form.username,
+            password:   form.password,
         })
         // logs the newly made user in 
-        .then(() => {
+        .then((res) => {
+
+            localStorage.setItem('username', form.username)
+            localStorage.setItem('user_id', res.data.id)
             axiosInstance.post('token/obtain/', {
                 username: form.username,
                 password: form.password
@@ -41,8 +44,6 @@ function Signup(props) {
                 axiosInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
                 localStorage.setItem('access_token', res.data.access)
                 localStorage.setItem('refresh_token', res.data.refresh)
-                localStorage.setItem('username', form.username)
-                localStorage.setItem('user_id', 1)
                 return res
             })
         })
@@ -61,13 +62,13 @@ function Signup(props) {
                     <Form.Control type='text'  name='first_name' placeholder='First Name' value={form.first_name} onChange={handleChange}></Form.Control>
                     <Form.Control type='text'  name='last_name'  placeholder='Last Name'  value={form.last_name}  onChange={handleChange}></Form.Control>
                     <Form.Control type='text'  name='username'   placeholder='Username'   value={form.username}   onChange={handleChange}></Form.Control>
-                    <Form.Control type='text'  name='password'   placeholder='Password'   value={form.password}   onChange={handleChange}></Form.Control>
+                    <Form.Control type='password'  name='password'   placeholder='Password'   value={form.password}   onChange={handleChange}></Form.Control>
                     <Button type='submit'>Sign-Up</Button>                
                 </Form.Group>
                 </div>
             <div className="input-group">
                 <p>Have an account already?</p>
-                <Button href='login/'type="button" variant='link'>Log-In</Button>
+                <Button href='/login/'type="button" variant='link'>Log-In</Button>
                 </div>
 
             </Form>

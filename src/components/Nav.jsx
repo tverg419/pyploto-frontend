@@ -32,15 +32,6 @@ function Nav(props) {
     if (loginStatus) {
         return (
             <div className="nav">
-                <a href='/'       ><IoHome/></a>
-                <a href='/search' ><GoSearch/></a>
-                <a href='/profile'><CgProfile/></a>
-                <button onClick={handleLogout}><IoLogOutOutline/></button>
-            </div>
-        );
-    } else {
-        return (
-            <div className="nav">
                 <div>
                     <Button href='/login'  variant='light'>Log In</Button>
                     <Button href='/signup' variant='light'>Sign Up</Button>
@@ -48,6 +39,15 @@ function Nav(props) {
                 
             </div>
         )
+    } else {
+        return (
+            <div className="nav">
+                <a href='/'       ><IoHome/></a>
+                <a href='/search' ><GoSearch/></a>
+                <a href='/profile'><CgProfile/></a>
+                <button onClick={handleLogout}><IoLogOutOutline/></button>
+            </div>
+        );
     }
 }
 
