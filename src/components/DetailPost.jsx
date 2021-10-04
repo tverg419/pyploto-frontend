@@ -52,9 +52,9 @@ function DetailPost(props) {
 
             const commentsList = comments.map(comment => {
                 return (
-                    <div key={comment.id}>
+                    <div key={comment.id} className='comment-card'>
                         <p>{comment.author_id}: {comment.body}</p>
-                        <Button variant='danger' onClick={() => deleteComment(comment.id)}>Delete</Button>
+                        <Button variant='danger' onClick={() => deleteComment(comment.id)}>X</Button>
                     </div>
                 )
             })

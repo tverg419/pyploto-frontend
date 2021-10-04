@@ -13,7 +13,7 @@ function Signup(props) {
         password: '',
     }
     const [form, setForm] = useState(initialState)
-    const {loginStatus, setLoginStatus} = useContext(LoginContext)
+
 
     // sets form when inputs are changed
     const handleChange = (event) => {
@@ -48,8 +48,7 @@ function Signup(props) {
             })
         })
         .catch(error => console.error)
-        // sets login to true
-        setLoginStatus(true)
+
     }
 
     return (
