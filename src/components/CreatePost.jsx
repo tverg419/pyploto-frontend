@@ -36,15 +36,15 @@ function CreatePost(props) {
         })
     }
     return (
-        <div>
+        <div className='form d-grid gap-2'>
             
             <h2>Create Post for {user}</h2>
-            <form className='form create-post-form' onSubmit={handleCreate}>
-                <input id='title' type='text' placeholder='title' onChange={handleChange} value={form.title}></input>
-                <input id='media' type='file' placeholder='Image Url' onChange={handleChange} value={form.media}></input>
+            <form className='create-post-form' onSubmit={handleCreate}>
+                <input id='title' type='text' placeholder='Title' onChange={handleChange} value={form.title}></input>
+                <input id='media' type='file' onChange={handleChange} value={form.media}></input>
                 <textarea id='caption'placeholder='Caption' onChange={handleChange} value={form.caption}></textarea>
-                <Button type='submit' variant='secondary'>Create</Button>
             </form>
+                <Button type='submit' variant='secondary'>Create</Button>
         </div>
     );
 }

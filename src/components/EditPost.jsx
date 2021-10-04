@@ -33,7 +33,7 @@ function EditPost(props) {
         })
     }
     return (
-        <div>
+        <div className='form edit-post-form'>
             <h1>Editing Post</h1>
             <Form onSubmit={submitEdit}>
 

@@ -60,7 +60,7 @@ function DetailPost(props) {
             })
             return (
                 
-                <div>
+                <div className='post-detail'>
                     <div className='post-detail-card'>
                         <Button href={`/posts/${post.post_id}/edit/`}>Edit Post</Button>
                         <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
