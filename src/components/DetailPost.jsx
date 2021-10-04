@@ -6,11 +6,12 @@ import { Image } from 'cloudinary-react'
 
 function DetailPost(props) {
 
+    const user_id = localStorage.getItem('user_id')
     const [post, setPost] = useState()
     const [comments, setComments] = useState()
     const [commentForm, setCommentForm] = useState({
         post_id: props.id,
-        author_id: 1,
+        author_id: user_id,
         body: ''
     })
     const history = useHistory()
@@ -68,6 +69,7 @@ function DetailPost(props) {
                         <p>{post.caption}</p>
                     </div>
                     <div className='comments'>
+                        <h4>Comments:</h4>
                         {commentsList}
                         <Form onSubmit={createComment}>
                             <Form.Control id='body' type='text' placeholder='Enter Comment' value={commentForm.body} onChange={changeComment}></Form.Control>

@@ -42,9 +42,9 @@ function CreatePost(props) {
             <form className='create-post-form' onSubmit={handleCreate}>
                 <input id='title' type='text' placeholder='Title' onChange={handleChange} value={form.title}></input>
                 <input id='media' type='file' onChange={handleChange} value={form.media}></input>
-                <textarea id='caption'placeholder='Caption' onChange={handleChange} value={form.caption}></textarea>
-            </form>
+                <textarea id='caption'placeholder='Caption' onChange={handleChange} value={form.caption}></textarea><br/>
                 <Button type='submit' variant='secondary'>Create</Button>
+            </form>
         </div>
     );
 }
