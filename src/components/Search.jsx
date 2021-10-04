@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import axiosInstance from '../axios.js'
 import { Image } from 'cloudinary-react'
@@ -23,13 +24,15 @@ function Search(props) {
 
     if (posts) {
 
-        const filteredPosts = posts.filter((post) => post.title.toLowerCase().includes(searchTerm))
+        const filteredPosts = posts.reverse().filter((post) => post.title.toLowerCase().includes(searchTerm))
 
         const results = filteredPosts.map(post => {
             return (
                 <div className='grid-square'>
                     <div key={post.id} className='profile-post'>
+                        <Link to={`/posts/${post.id}`}>
                         <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
+                        </Link>
                     </div>
                 </div>
 
@@ -40,8 +43,10 @@ function Search(props) {
                 <div>
                     <h1>Search Posts</h1>
                     < Form onSubmit={handleSearch}>
-                        <Form.Control id='search' type='text' placeholder='Search for posts..' value={searchTerm} onChange={handleSearch}></Form.Control>
-                        <Button type='submit'>Search</Button>
+                        <div className='search-bar'>
+                            <Form.Control id='search' type='text' placeholder='Search for posts..' value={searchTerm} onChange={handleSearch}></Form.Control>
+                            <Button type='submit'>Search</Button>
+                        </div>
                     </Form>
                 </div>
                 <div className='grid-container'>

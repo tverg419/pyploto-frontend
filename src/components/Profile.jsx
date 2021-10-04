@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axiosInstance from '../axios.js';
 import { Button } from 'react-bootstrap'
 import { Image } from 'cloudinary-react'
@@ -8,7 +9,20 @@ function Profile(props) {
     const [posts, setPosts] = useState([])
     const [author, setAuthor] = useState({})
     const user_id = localStorage.getItem('user_id')
+    const history = useHistory()
 
+    async function handleLogout() {
+        const response = await axiosInstance.post('/blacklist/', {
+          'refresh_token': localStorage.getItem('refresh_token')
+        })
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('refresh_token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('user_id')
+        axiosInstance.defaults.headers['Authorization'] = null;
+        history.push('/login')
+        return response
+      }
     async function getPosts() {
         await axiosInstance.get('posts/')
         .then(res => res.data)
@@ -28,8 +42,8 @@ function Profile(props) {
 
     if (posts && author) {
 
-        const filteredPosts = posts.filter(post => post.author == user_id)
-        console.log(filteredPosts)
+        const filteredPosts = posts.reverse().filter(post => post.author == user_id)
+
         const profile = filteredPosts.map(post => {
             return (
                 <div className='grid-square'>
@@ -51,6 +65,7 @@ function Profile(props) {
                         <p>{author.first_name} {author.last_name}</p>
                         <p>{author.username}</p>
                         <Button href='/'>Edit Profile Picture</Button>
+                        <Button onClick={handleLogout}variant='danger'>Log Out</Button>
                     </div>
                 </div>
                 <div className='grid-container'>

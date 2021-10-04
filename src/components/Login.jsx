@@ -27,7 +27,6 @@ function Login(props) {
             password: login.password
         })
         .then(res => {
-            console.log(res)
             if (res.status === 200) {
                 axiosInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
                 localStorage.setItem('access_token', res.data.access)
@@ -50,15 +49,15 @@ function Login(props) {
     return (
         <div className='form login-form'>
             <h1>Login</h1>
-            <Form onSubmit={submitLogin}>
+            <Form onSubmit={submitLogin} className='d-grid gap-2'>
                 <Form.Control type='text' name='username' placeholder='Username' value={login.username} onChange={changeLogin}></Form.Control>
                 <Form.Control type='password' name='password' placeholder='Password' value={login.password}onChange={changeLogin}></Form.Control>
                 <Button type='submit'>Login</Button>      
             </Form>
-            <div className="input-group">
+            <div className='form-footer'>
                 <p>Don't have an account yet?</p>
                 <Button href='/signup/'type="button" variant='link'>Sign-Up</Button>
-                </div>
+            </div>
         </div>
     );
 }

@@ -66,7 +66,7 @@ function Signup(props) {
                     <Button type='submit'>Sign-Up</Button>                
                 </Form.Group>
                 </div>
-            <div className="input-group">
+            <div className="form-footer">
                 <p>Have an account already?</p>
                 <Button href='/login/'type="button" variant='link'>Log-In</Button>
                 </div>

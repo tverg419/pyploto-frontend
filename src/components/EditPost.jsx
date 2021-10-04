@@ -12,7 +12,6 @@ function EditPost(props) {
         await axiosInstance.get(`/posts/${props.id}`)
         .then(res => res.data)
         .then(data => {
-            console.log(data)
             setForm({
                 ['author']: data.author, 
                 ['title']: data.title, 
@@ -28,11 +27,9 @@ function EditPost(props) {
     }
     function submitEdit(event) {
         event.preventDefault()
-        console.log(form)
         axiosInstance.put(`/posts/${props.id}`, form)
         .then(res => {
             history.push('/posts/success')
-            return res.data
         })
     }
     return (
@@ -41,7 +38,7 @@ function EditPost(props) {
             <Form onSubmit={submitEdit}>
 
                 <Form.Control id='title' type='text' value={form.title} onChange={updateForm}></Form.Control>
-                <Form.Control id='media' type='text' value={form.media} onChange={updateForm}></Form.Control>
+                {/* <Form.Control id='media' type='textarea' value={form.media} onChange={updateForm}></Form.Control> */}
                 <Form.Control id='caption' value={form.caption} onChange={updateForm}></Form.Control>
 
                 <Button type='submit'>Finish Editing</Button>

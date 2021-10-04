@@ -16,7 +16,7 @@ import EditPost       from './components/EditPost.jsx'
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState(null)
+  const [loginStatus, setLoginStatus] = useState()
 
   return (
     
@@ -42,10 +42,7 @@ function App() {
             <Route path='/' render={() => {<Signup/>}}/>
           </Switch>
       </div>
-
-      {/* <div className="App-footer">
-        <h1>Footer</h1>
-      </div> */}
+      
       </LoginContext.Provider>
     </div>
   );

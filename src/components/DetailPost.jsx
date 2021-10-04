@@ -37,7 +37,6 @@ function DetailPost(props) {
     function createComment(event) {
         event.preventDefault()
         axiosInstance.post(`/comments/?post_id=${props.id}`, commentForm)
-        .then(res => console.log(res.data))
         window.location.reload()
     }
     function deleteComment(id) {
@@ -48,7 +47,7 @@ function DetailPost(props) {
         getPost()
         getComments()
     }, [])
-    console.log(post)
+
     if (post && comments) {
 
             const commentsList = comments.map(comment => {
@@ -64,9 +63,8 @@ function DetailPost(props) {
                 <div>
                     <div className='post-detail-card'>
                         <Button href={`/posts/${post.post_id}/edit/`}>Edit Post</Button>
-                        <h1>{post.title}</h1>
                         <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
-                        <p>{post.title}</p>
+                        <h2>{post.title}</h2>
                         <p>{post.caption}</p>
                     </div>
                     <div className='comments'>
