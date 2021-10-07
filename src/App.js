@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import { LoginContext } from './components/LoginContext.jsx'
 import Nav      from './components/Nav.jsx'
+import Landing  from './components/Landing';
 import Feed     from './components/Feed.jsx'
 import Search   from './components/Search.jsx'
 import Profile  from './components/Profile.jsx'
@@ -30,7 +31,8 @@ function App() {
 
       <div className="App-main">
           <Switch>
-            <Route exact path="/" component={Feed}/>
+            <Route exact path="/" component={Landing}/>
+            <Route exact path="/home" component={Feed}/>
             <Route exact path='/profile' component={Profile}/>
             <Route exact path='/search' component={Search}/>
             <Route exact path='/signup' component={Signup}/>
