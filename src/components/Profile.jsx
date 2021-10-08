@@ -8,7 +8,7 @@ function Profile(props) {
 
     const [posts, setPosts] = useState([])
     const [author, setAuthor] = useState({})
-    const user_id = localStorage.getItem('user_id')
+    const username = localStorage.getItem('username')
     const history = useHistory()
 
     async function handleLogout() {
@@ -18,7 +18,6 @@ function Profile(props) {
         localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         localStorage.removeItem('username')
-        localStorage.removeItem('user_id')
         axiosInstance.defaults.headers['Authorization'] = null;
         history.push('/login')
         return response
@@ -30,7 +29,7 @@ function Profile(props) {
         .catch(err => console.error)
     }
     async function getAuthor() {
-        await axiosInstance.get(`users/${user_id}`)
+        await axiosInstance.get(`users/${username}`)
         .then(res => res.data)
         .then(data => setAuthor(data))
         .catch(err => console.error)
@@ -39,10 +38,10 @@ function Profile(props) {
         getPosts()
         getAuthor()
     }, [])
-
+    console.log(author)
     if (posts && author) {
 
-        const filteredPosts = posts.reverse().filter(post => post.author == user_id)
+        const filteredPosts = posts.reverse().filter(post => post.user == username)
 
         const profile = filteredPosts.map(post => {
             return (
@@ -64,7 +63,7 @@ function Profile(props) {
                     <div className='profile-details'>
                         <p>{author.first_name} {author.last_name}</p>
                         <p>{author.username}</p>
-                        <Button href='/'>Edit Profile Picture</Button>
+                        <Button href='/edit'>Edit Profile Picture</Button>
                         <Button onClick={handleLogout}variant='danger'>Log Out</Button>
                     </div>
                 </div>

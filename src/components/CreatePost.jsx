@@ -4,11 +4,10 @@ import axiosInstance from '../axios.js'
 import { Button } from 'react-bootstrap'
 
 function CreatePost(props) {
-    const user = localStorage.getItem('username')
-    const user_id = localStorage.getItem('user_id')
+    const username = localStorage.getItem('username')
     
     const initialState = {
-        author: user_id,
+        user: username,
         media: "",
         title: "",
         caption: "",
@@ -24,21 +23,22 @@ function CreatePost(props) {
 
     async function handleCreate(event) {
         event.preventDefault();
-        await axiosInstance.post('posts/', {
-            author: form.author,
+        await axiosInstance.post('posts/create', {
+            user: form.user,
             media: form.media,
             title: form.title,
             caption: form.caption
         })
         .then(res => {
             history.push('/posts/success')
+            console.log(res)
             return res.data
         })
     }
     return (
         <div className='form d-grid gap-2'>
             
-            <h2>Create Post for {user}</h2>
+            <h2>Create Post for {username}</h2>
             <form className='create-post-form' onSubmit={handleCreate}>
                 <input id='title' type='text' placeholder='Title' onChange={handleChange} value={form.title}></input>
                 <input id='media' type='file' onChange={handleChange} value={form.media}></input>

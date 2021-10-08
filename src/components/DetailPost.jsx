@@ -6,12 +6,12 @@ import { Image } from 'cloudinary-react'
 
 function DetailPost(props) {
 
-    const user_id = localStorage.getItem('user_id')
+    const username = localStorage.getItem('username')
     const [post, setPost] = useState()
     const [comments, setComments] = useState()
     const [commentForm, setCommentForm] = useState({
         post_id: props.id,
-        author_id: user_id,
+        user: username,
         body: ''
     })
     const history = useHistory()
@@ -48,13 +48,13 @@ function DetailPost(props) {
         getPost()
         getComments()
     }, [])
-
+    console.log(comments)
     if (post && comments) {
 
             const commentsList = comments.map(comment => {
                 return (
                     <div key={comment.id} className='comment-card'>
-                        <p>{comment.author_id}: {comment.body}</p>
+                        <p><strong>{comment.user}</strong>: {comment.body}</p>
                         <Button variant='danger' onClick={() => deleteComment(comment.id)}>X</Button>
                     </div>
                 )

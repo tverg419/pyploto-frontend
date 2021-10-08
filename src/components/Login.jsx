@@ -39,7 +39,6 @@ function Login(props) {
             axiosInstance.get(`users/${login.username}`)
             .then(res => {
                 localStorage.setItem('username', login.username)
-                localStorage.setItem('user_id', res.data.id)
                 history.push('/')
             })
         })

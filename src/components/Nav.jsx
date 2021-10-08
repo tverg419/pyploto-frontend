@@ -25,7 +25,7 @@ function Nav(props) {
             <div>
 
             <div className="nav nav-mobile">
-                <a href='/'       ><IoHome/></a>
+                <a href='/home'       ><IoHome/></a>
                 <a href='/search' ><GoSearch/></a>
                 <a href='/profile'><CgProfile/></a>
             </div>
@@ -34,7 +34,7 @@ function Nav(props) {
                     <h2>Pyploto</h2>
                 </div>
                 <div>
-                    <a href='/'       >Home</a>
+                    <a href='/home'   >Home</a>
                     <a href='/search' >Search</a>
                     <a href='/profile'>Profile</a>
                     <a href='/login'>Login</a>

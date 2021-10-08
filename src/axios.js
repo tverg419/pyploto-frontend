@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'https://pyploto-db.herokuapp.com/api/',
+    // baseURL: 'https://pyploto-db.herokuapp.com/api/',
+    baseURL: 'http://localhost:8000/api',
     timeout: 5000,
     headers: {
         "Authorization": "JWT " + localStorage.getItem('access_token'),

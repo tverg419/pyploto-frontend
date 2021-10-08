@@ -6,12 +6,7 @@ import { Image } from 'cloudinary-react'
 function Feed(props) {
 
     const [posts, setPosts] = useState([])
-    // const [authors, setAuthors] = useState([])
-    // async function getAuthor(author_id) {
-    //     await axiosInstance.get(`users/${author_id}`)
-    //     .then(res => res.data)
-    //     .then(data => console.log(data))
-    // }
+
     async function getPosts() {
         await axiosInstance.get('posts/')
         .then(res => res.data)
@@ -19,19 +14,19 @@ function Feed(props) {
         .catch(err => console.error)
     }
     useEffect(() => getPosts(), [])
-
+    console.log(posts)
     if (posts) {
         // Reverse your map 
         const feed = posts.reverse().map(post => {
             return (
                 <div key={post.id} className='post-card'>
                     <div className='post-header'>
-                    <h2>{post.author}</h2>
+                    <h2>{post.user}</h2>
                     <p>{post.datetime_modified}</p>
                     </div>
                     <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
                     <div className='post-card-details'>
-                    <Button href={`/posts/${post.post_id}`} variant='secondary'>See Post Details</Button>
+                    <Button href={`/posts/${post.id}`} variant='secondary'>See Post Details</Button>
                         </div>
                 </div>
 
