@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axiosInstance from '../axios.js'
 import { Button } from 'react-bootstrap'
 import { Image } from 'cloudinary-react'
+import moment from 'moment'
+import { LoginContext } from './LoginContext.jsx';
 
 function Feed(props) {
 
     const [posts, setPosts] = useState([])
+    const {loginStatus, setLoginStatus} = useContext(LoginContext)
+
+    async function checkLogin() {
+
+        try {
+            setLoginStatus(true)
+        } catch {
+
+        }
+    }
 
     async function getPosts() {
         await axiosInstance.get('posts/')
@@ -14,7 +26,7 @@ function Feed(props) {
         .catch(err => console.error)
     }
     useEffect(() => getPosts(), [])
-    console.log(posts)
+
     if (posts) {
         // Reverse your map 
         const feed = posts.reverse().map(post => {
@@ -22,7 +34,7 @@ function Feed(props) {
                 <div key={post.id} className='post-card'>
                     <div className='post-header'>
                     <h2>{post.user}</h2>
-                    <p>{post.datetime_modified}</p>
+                    <p>{moment(post.datetime_modified).format("l hh:mm a")}</p>
                     </div>
                     <Image cloudName='duqrxtqf3' publicID={`https://res.cloudinary.com/duqrxtqf3/${post.media}`}/>
                     <div className='post-card-details'>
