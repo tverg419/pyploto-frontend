@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 import { LoginContext } from './LoginContext.jsx'
 import axiosInstance from '../axios.js'
 import { Form, Button } from 'react-bootstrap'
-import axios from 'axios';
 
 function Login(props) {
 
@@ -11,7 +10,7 @@ function Login(props) {
         username: '',
         password: ''
     }
-    const {loginStatus, setLoginStatus} = useContext(LoginContext)
+    const {setLoginStatus} = useContext(LoginContext)
     const [login, setLogin] = useState(initialState)
     const history = useHistory()
 
@@ -39,6 +38,7 @@ function Login(props) {
             axiosInstance.get(`users/${login.username}`)
             .then(res => {
                 localStorage.setItem('username', login.username)
+                setLoginStatus(true)
                 history.push('/')
             })
         })

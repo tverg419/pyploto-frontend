@@ -10,7 +10,7 @@ function CreatePost(props) {
         user: username,
         media: "",
         title: "",
-        caption: "",
+        caption: "", 
         
     }
 

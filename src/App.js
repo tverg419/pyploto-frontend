@@ -17,12 +17,15 @@ import EditPost       from './components/EditPost.jsx'
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState()
+  const [loginStatus, setLoginStatus] = useState(false)
 
   return (
     
     <div className="App">
-        <LoginContext.Provider value={{loginStatus, setLoginStatus}}>
+        <LoginContext.Provider value={{
+            loginStatus, 
+            setLoginStatus
+        }}>
 
       
       <div className="App-header">
@@ -30,7 +33,6 @@ function App() {
       </div>
 
       <div className="App-main">
-          <Switch>
             <Route exact path="/" component={Landing}/>
             <Route exact path="/home" component={Feed}/>
             <Route exact path='/profile' component={Profile}/>
@@ -41,8 +43,7 @@ function App() {
             <Route exact path="/posts/success" component={SuccessPost}/>
             <Route exact path="/posts/:id" render={(routerProps) => <DetailPost id={routerProps.match.params.id}/> }/>
             <Route exact path="/posts/:id/edit" render={(routerProps) => <EditPost id={routerProps.match.params.id}/> }/>
-            <Route path='/' render={() => {<Signup/>}}/>
-          </Switch>
+            <Route path='/' render={() => {<Landing/>}}/>
       </div>
       
       </LoginContext.Provider>
