@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# pyploto-frontend
-=======
 # Pyploto
 
 *insert image of live application*
@@ -33,4 +30,3 @@ Live Link: [Pyploto](https://pyploto.herokuapp.com/)
 ## Contributor Guidelines
 - Please submit any bugs that are found in the [Issues](https://github.com/tverg419/pyploto-backend/issues) tab.
 - Pull request with any input would be much appreciated
->>>>>>> b71a1b45900cc8bf36aa7f4fa506da84aab54776
