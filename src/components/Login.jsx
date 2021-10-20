@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useLogin } from './LoginContext.jsx'
 import axiosInstance from '../axios.js'
@@ -38,6 +38,7 @@ function Login(props) {
             axiosInstance.get(`users/${login.username}`)
             .then(res => {
                 localStorage.setItem('username', login.username)
+                localStorage.setItem('loggedIn', true)
                 setLoginStatus(true)
                 history.push('/')
             })

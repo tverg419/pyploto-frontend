@@ -3,9 +3,11 @@ import { useHistory } from 'react-router-dom';
 import axiosInstance from '../axios.js';
 import { Button } from 'react-bootstrap'
 import { Image } from 'cloudinary-react'
+import { useLogin } from './LoginContext'
 
 function Profile(props) {
 
+    const {setLoginStatus} = useLogin()
     const [posts, setPosts] = useState([])
     const [author, setAuthor] = useState({})
     const username = localStorage.getItem('username')
@@ -18,7 +20,9 @@ function Profile(props) {
         localStorage.removeItem('access_token')
         localStorage.removeItem('refresh_token')
         localStorage.removeItem('username')
+        localStorage.removeItem('loggedIn')
         axiosInstance.defaults.headers['Authorization'] = null;
+        setLoginStatus(false)
         history.push('/login')
         return response
       }

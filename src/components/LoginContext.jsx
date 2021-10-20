@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 const LoginContext = React.createContext()
 
@@ -15,6 +15,15 @@ export function LoginProvider({ children }) {
         setLoginStatus,
     }
     
+    useEffect(()=> {
+        const isLoggedIn = localStorage.getItem('loggedIn')
+        
+        if (isLoggedIn) {
+            setLoginStatus(true)
+        } else {
+            setLoginStatus(false)
+        }
+    }, [])
     return (
         <LoginContext.Provider value={value}>
             {children}
