@@ -3,12 +3,12 @@ import { Button } from 'react-bootstrap'
 import { CgProfile } from 'react-icons/cg'
 import { IoHome } from 'react-icons/io5'
 import { GoSearch } from 'react-icons/go'
-import { LoginContext } from './LoginContext.jsx'
+import { useLogin } from './LoginContext.jsx'
 
 function Nav(props) {
-
-    const {loginStatus} = useContext(LoginContext)
-      
+    
+    const { loginStatus } = useLogin()
+    console.log(loginStatus)
     // ternary operator to switch nav bar
     if (loginStatus) {
         return (

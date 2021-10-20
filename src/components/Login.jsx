@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom'
-import { LoginContext } from './LoginContext.jsx'
+import { useLogin } from './LoginContext.jsx'
 import axiosInstance from '../axios.js'
 import { Form, Button } from 'react-bootstrap'
 
@@ -10,7 +10,7 @@ function Login(props) {
         username: '',
         password: ''
     }
-    const {setLoginStatus} = useContext(LoginContext)
+    const {setLoginStatus} = useLogin()
     const [login, setLogin] = useState(initialState)
     const history = useHistory()
 

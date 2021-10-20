@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import { LoginContext } from './components/LoginContext.jsx'
+import { LoginProvider } from './components/LoginContext.jsx'
 import Nav      from './components/Nav.jsx'
 import Landing  from './components/Landing';
 import Feed     from './components/Feed.jsx'
@@ -17,15 +17,10 @@ import EditPost       from './components/EditPost.jsx'
 
 function App() {
 
-  const [loginStatus, setLoginStatus] = useState(false)
-
   return (
     
     <div className="App">
-        <LoginContext.Provider value={{
-            loginStatus, 
-            setLoginStatus
-        }}>
+        <LoginProvider>
 
       
       <div className="App-header">
@@ -46,7 +41,7 @@ function App() {
             <Route path='/' render={() => {<Landing/>}}/>
       </div>
       
-      </LoginContext.Provider>
+      </LoginProvider>
     </div>
   );
 }

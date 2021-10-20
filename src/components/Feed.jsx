@@ -3,21 +3,21 @@ import axiosInstance from '../axios.js'
 import { Button } from 'react-bootstrap'
 import { Image } from 'cloudinary-react'
 import moment from 'moment'
-import { LoginContext } from './LoginContext.jsx';
+import { useLogin } from './LoginContext.jsx';
 
 function Feed(props) {
 
     const [posts, setPosts] = useState([])
-    const {loginStatus, setLoginStatus} = useContext(LoginContext)
+    const { loginStatus } = useLogin()
 
-    async function checkLogin() {
+    // async function checkLogin() {
 
-        try {
-            setLoginStatus(true)
-        } catch {
+    //     try {
+    //         setLoginStatus(true)
+    //     } catch {
 
-        }
-    }
+    //     }
+    // }
 
     async function getPosts() {
         await axiosInstance.get('posts/')
