@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Button } from 'react-bootstrap'
+import React from 'react';
 import { CgProfile } from 'react-icons/cg'
 import { IoHome } from 'react-icons/io5'
 import { GoSearch } from 'react-icons/go'
@@ -36,9 +35,7 @@ function Nav(props) {
             <div>
 
             <div className="nav nav-mobile">
-                <a href='/home'       ><IoHome/></a>
-                <a href='/search' ><GoSearch/></a>
-                <a href='/profile'><CgProfile/></a>
+                
             </div>
             <div className="nav nav-desktop">
                 <div>

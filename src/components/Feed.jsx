@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axios.js'
 import { Button } from 'react-bootstrap'
 import { Image } from 'cloudinary-react'

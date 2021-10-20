@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import React from 'react'
+import { Route } from 'react-router-dom'
 
 import { LoginProvider } from './components/LoginContext.jsx'
 import Nav      from './components/Nav.jsx'
