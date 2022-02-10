@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import { LoginProvider } from './components/LoginContext.jsx'
+import { LoginProvider, useLogin } from './components/LoginContext.jsx'
 import Nav      from './components/Nav.jsx'
 import Landing  from './components/Landing';
 import Feed     from './components/Feed.jsx'
@@ -16,6 +16,8 @@ import CreatePost     from './components/CreatePost.jsx'
 import EditPost       from './components/EditPost.jsx'
 
 function App() {
+
+  const loginStatus = useLogin()
 
   return (
     

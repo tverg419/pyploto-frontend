@@ -26,6 +26,7 @@ function Profile(props) {
         history.push('/login')
         return response
       }
+      
     async function getPosts() {
         await axiosInstance.get('posts/')
         .then(res => res.data)

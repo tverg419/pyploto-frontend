@@ -25,7 +25,7 @@ function Nav(props) {
                     <a href='/home'   >Home</a>
                     <a href='/search' >Search</a>
                     <a href='/profile'>Profile</a>
-                    <a href='/logout'>Logout</a>
+                    {/* <a href='/logout'>Logout</a> */}
                 </div>
             </div>
             </div>
